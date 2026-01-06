@@ -18,7 +18,7 @@ India is replacing century-old laws. Lawyers and law students need a way to inst
 Nyaya-Flow/
 ├── data/               # Official Gazette PDFs of BNS & IPC
 ├── src/                
-│   ├── ingestion.py    # Document processing & chunking logic
-│   ├── database.py     # Pinecone vector storage integration
+│   ├── ingestion.py    # Document processing & chunking logic (Coming Soon)
+│   ├── database.py     # Pinecone vector storage integration (Coming Soon)
 │   └── app.py          # Streamlit frontend (Coming Soon)
 └── requirements.txt    # Dependency list
