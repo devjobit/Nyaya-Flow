@@ -1,0 +1,16 @@
+# Document Processing
+pypdf
+
+# AI & Orchestration
+langchain
+langchain-community
+langchain-huggingface
+langchain-pinecone
+
+# Vector Database & Embeddings
+pinecone-client
+sentence-transformers
+
+# UI & Environment
+streamlit
+python-dotenv
