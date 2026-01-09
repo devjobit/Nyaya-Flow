@@ -1,6 +1,9 @@
 import os
 from langchain_community.document_loaders import PyPDFLoader as py
-def get_pdf(data_folder="data/"):
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+def load_and_chunk_legal_docs(data_folder="data/"):
+    all_chunks=[]
+    text_splitter=RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150,length_function=len)
     if not os.path.exists(data_folder):
         print(f"Error: The folder {data_folder} is not found")
         return
@@ -14,14 +17,19 @@ def get_pdf(data_folder="data/"):
         try:
             loader = py(file_path)
             pages = loader.load()
-            
-            print(f"Successfully loaded: {file}")
-            print(f"Total pages: {len(pages)}")
-            print(f"First page preview: {pages[0].page_content[:100]}...\n")
+            for page in pages:
+                page.metadata["law_source"] = file.replace(".pdf","")
+            chunks=text_splitter.split_documents(pages)
+            all_chunks.extend(chunks)
+            print(f"{file}: Created {len(chunks)} chunks.")
             
         except Exception as e:
             print(f"Failed to load {file}: {str(e)}")
+    return all_chunks
 
 if __name__ == "__main__":
-    get_pdf()
+    final_chunks = load_and_chunk_legal_docs()
+    if final_chunks:
+        print(f"\n Total Chunks Ready: {len(final_chunks)}")
+        print(f" Source of first chunk: {final_chunks[0].metadata['law_source']}")
 
