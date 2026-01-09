@@ -4,7 +4,7 @@ def get_pdf(data_folder="data/"):
     if not os.path.exists(data_folder):
         print(f"Error: The folder {data_folder} is not found")
         return
-    files=[f for f in os.listdir(data_folder) if f.endswitch('.pdf')]
+    files=[f for f in os.listdir(data_folder) if f.endswith('.pdf')]
     if not files:
         print("No PDF files found in the data folder")
         return
