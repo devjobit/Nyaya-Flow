@@ -19,6 +19,6 @@ Nyaya-Flow/
 ├── data/               # Official Gazette PDFs of BNS & IPC
 ├── src/                
 │   ├── ingestion.py    # PDF ingestion, recursive chunking, and metadata tagging
-│   ├── database.py     # Pinecone vector storage integration (Coming Soon)
+│   ├── database.py     # Pinecone vector storage integration (In Progress)
 │   └── app.py          # Streamlit frontend (Coming Soon)
 └── requirements.txt    # Dependency list
