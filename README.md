@@ -17,8 +17,21 @@ India is replacing century-old laws. Lawyers and law students need a way to inst
 ```text
 Nyaya-Flow/
 ├── data/               # Official Gazette PDFs of BNS & IPC
-├── src/                
+├── src/
 │   ├── ingestion.py    # PDF ingestion, recursive chunking, and metadata tagging
-│   ├── database.py     # Pinecone vector storage integration (In Progress)
-│   └── app.py          # Streamlit frontend (Coming Soon)
+│   ├── database.py     # Pinecone vector storage integration
+│   ├── retrieval.py    # Queries Pinecone for relevant IPC/BNS chunks
+│   ├── agent.py        # LangChain v1 agent (Groq LLM) that reasons over retrieved text
+│   └── app.py          # Streamlit frontend
 └── requirements.txt    # Dependency list
+```
+
+## ▶️ Running it
+
+1. `pip install -r requirements.txt`
+2. Fill in `.env` with real `PINECONE_API_KEY` and `GROQ_API_KEY` values
+   (get a free Groq key at [console.groq.com](https://console.groq.com)).
+3. Build the index once: `python -m src.database`
+4. Launch the app: `streamlit run src/app.py`
+
+You can also query the agent directly from the terminal: `python -m src.agent`
